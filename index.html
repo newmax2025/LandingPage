@@ -242,6 +242,20 @@
   margin: 10px auto; /* Centraliza e dá espaçamento */
 }
 
+.responsive-video {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.responsive-video video {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 255, 60, 0.3);
+}
+
+
     @media (max-width: 768px) {
       header h1 { font-size: 2.2rem; }
       .plans-section h2, .faq-section h2, .testimonials-section h2, .cta-section h2 { font-size: 2rem; }
@@ -257,7 +271,12 @@
   </header>
   
   <section class="video-section">
-    <iframe width="800" height="450" src="video/Área de Membros - Google Chrome 2025-04-20 10-45-03.mp4" frameborder="0" allowfullscreen></iframe>
+    <div class="responsive-video">
+      <video controls>
+        <source src="video/Área de Membros - Google Chrome 2025-04-20 10-45-03.mp4" type="video/mp4">
+        Seu navegador não suporta a reprodução de vídeo.
+      </video>
+    </div>
   </section>
 
   <section class="text-section">
