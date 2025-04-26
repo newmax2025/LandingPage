@@ -79,11 +79,13 @@
       background: #1c1c1c;
       padding: 2rem;
       border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0, 255, 195, 0.2);
+      box-shadow: #00ff22;
       transition: transform 0.3s;
       display: flex;
       flex-direction: column;
       align-items: center;
+      border: 3px solid #00ff22; /* Borda verde fluorescente */
+      border-radius: 8px; /* Deixa a borda arredondada (opcional) */
     }
 
     .plan:hover { transform: translateY(-10px); }
@@ -201,7 +203,7 @@
       border-radius: 10px; /* Deixa a borda arredondada (opcional) */
     }
 
-    .cta-button:hover { background-color: #ffffff; }
+    .cta-button:hover { background-color: #fefffe; }
 
 
     footer { background: #111; text-align: center; padding: 2rem 1rem; color: #888; }
@@ -255,10 +257,7 @@
   </header>
   
   <section class="video-section">
-    <video width="800" height="450" controls>
-      <source src="video/Área de Membros - Google Chrome 2025-04-20 10-45-03.mp4" type="video/mp4">
-      Seu navegador não suporta a reprodução de vídeo.
-    </video>
+    <iframe width="800" height="450" src="video/Área de Membros - Google Chrome 2025-04-20 10-45-03.mp4" frameborder="0" allowfullscreen></iframe>
   </section>
 
   <section class="text-section">
