@@ -76,50 +76,81 @@
     }
 
     .plan {
-      background: #1c1c1c;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: #00ff22;
-      transition: transform 0.3s;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      border: 3px solid #00ff22; /* Borda verde fluorescente */
-      border-radius: 8px; /* Deixa a borda arredondada (opcional) */
-    }
+  background-color: #222121;
+  border-radius: 16px;
+  padding: 20px;
+  width: 100%;
+  max-width: 320px;
+  margin: 20px auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  border: 3px solid #0bf507; /* Borda verde fluorescente */
+  border-radius: 8px; /* Deixa a borda arredondada (opcional) */
+}
 
-    .plan:hover { transform: translateY(-10px); }
+.plan-logo {
+  width: 80px;
+  margin-bottom: 10px;
+}
 
-    .plan h3 { font-size: 2rem; margin-bottom: 1rem; color: #00ff22; }
+.plan h3 {
+  font-size: 22px;
+  margin: 10px 0;
+}
 
-    .plan p { font-size: 1.2rem; margin: 0.5rem 0; }
+.plan ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+  font-size: 14px;
+  color: #ffffff;
+}
 
-    .price {
-      font-size: 2.5rem;
-      margin: 1rem 0 0.2rem;
-      color: #fff;
-    }
+.plan ul li {
+  margin: 5px 0;
+}
 
-    .per-month {
-      font-size: 1rem;
-      color: #bbb;
-      margin-bottom: 1.5rem;
-    }
 
-    .plan-button {
-      margin-top: auto;
-      background-color:  #00ff22;
-      color: #000;
-      padding: 0.8rem 1.5rem;
-      font-size: 1.2rem;
-      cursor: pointer;
-      transition: background 0.3s;
-      text-decoration: none;
-      border: 3px solid #ffffff; /* Borda verde fluorescente */
-      border-radius: 8px; /* Deixa a borda arredondada (opcional) */
-    }
+    .plan:hover { 
+      transform: translateY(-10px);
+     }
 
-    .plan-button:hover { background-color:  #ffffff; }
+
+    .plan p {
+  font-size: 14px;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.price {
+  font-size: 24px;
+  font-weight: bold;
+  color: #00ff08;
+  margin: 15px 0 5px 0;
+}
+
+
+.per-month {
+  font-size: 14px;
+  color: #ffffff;
+  margin-bottom: 15px;
+}
+
+.plan-button {
+  display: inline-block;
+  background-color: #00ff15;
+  color: #000000;
+  padding: 10px 20px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s;
+  border: 3px solid #ffffff; /* Borda verde fluorescente */
+  border-radius: 8px; /* Deixa a borda arredondada (opcional) */
+}
+.plan-button:hover {
+  background-color: #007e33;
+}
 
     .annual-plans, .available-modules, .single-services {
     margin-top: 20px;
@@ -203,6 +234,11 @@
       border-radius: 10px; /* Deixa a borda arredondada (opcional) */
     }
 
+    .cta-image {
+  width: 400px; /* ajusta o tamanho */
+  margin-bottom: 20px; /* espaçamento entre imagem e título */
+}
+
     .cta-button:hover { background-color: #fefffe; }
 
 
@@ -230,18 +266,15 @@
 }
 
 .plan-logo {
-  width: 50px; /* tamanho da logo */
+  width: 100px; /* tamanho da logo */
   height: auto;
   margin-bottom: 10px; /* espaço entre a logo e o título */
 }
 
 .device-image {
-  width: 100%; /* Faz a imagem ocupar a largura do card */
-  max-width: 300px; /* Limita pra não ficar gigante */
-  display: block;
-  margin: 10px auto; /* Centraliza e dá espaçamento */
+  width: 100px;
+  margin: 10px 0;
 }
-
 .responsive-video {
   width: 100%;
   max-width: 800px;
@@ -252,7 +285,49 @@
   width: 100%;
   height: auto;
   border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 255, 60, 0.3);
+  box-shadow: 0 0 20px rgba(0, 255, 59, 0.3);
+}
+
+.faq-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  padding: 40px;
+  flex-wrap: wrap; /* Responsivo para mobile */
+}
+
+.faq-image img {
+  max-width: 400px;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.faq {
+  max-width: 600px;
+}
+
+.faq h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.faq-item {
+  margin-bottom: 10px;
+}
+
+.faq-question {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #000000; /* Azul bonito */
+  margin-bottom: 8px;
+}
+
+.faq-answer {
+  color: #ffffff;
+  font-size: 1rem;
+  line-height: 1.5;
 }
 
 
@@ -295,7 +370,6 @@
         <div class="price">R$ 120,00</div>
         <div class="per-month">Plano Mensal</div>
         <!-- Aqui adiciona a imagem nova -->
-    <img src="img/dispositivos.png" alt="Dispositivos" class="device-image">
         <a href="#" class="plan-button">Assinar</a>
       </div>
   
@@ -305,7 +379,6 @@
         <p>100 consultas por módulo,<br> atualizado diariamente</p>
         <div class="price">R$ 200,00</div>
         <div class="per-month">Plano Mensal</div>
-        <img src="img/dispositivos.png" alt="Dispositivos" class="device-image">
         <a href="#" class="plan-button">Assinar</a>
       </div>
   
@@ -320,7 +393,6 @@
         </ul>
         <div class="price">R$ 300,00</div>
         <div class="per-month">Plano Mensal</div>
-        <img src="img/dispositivos.png" alt="Dispositivos" class="device-image">
         <a href="#" class="plan-button">Assinar</a>
       </div>
   
@@ -334,7 +406,6 @@
         </ul>
         <div class="price">R$ 650,00</div>
         <div class="per-month">Plano Mensal</div>
-        <img src="img/dispositivos.png" alt="Dispositivos" class="device-image">
         <a href="#" class="plan-button">Assinar</a>
       </div>
 
@@ -347,7 +418,6 @@
           ✅ FGTS | ✅ Aposentados | ✅ Radar | ✅ Placa Plus
           ✅ Condutor | ✅ Veicular | ✅ DETRAN Pro
           <div class="per-month">e Muitos Outros Módulos!</div>
-          <img src="img/dispositivos.png" alt="Dispositivos" class="device-image">
         </ul>
         <div class="price">R$ 2.520</div>
         <div class="per-month">Premium Anual (30% off)</div>
@@ -390,7 +460,6 @@
             <button class="add-credit-btn">
               ➕ Adicionar Crédito
             </button>
-            <img src="img/dispositivos.png" alt="Dispositivos" class="device-image">
           </li>
         </ul>
       </div>        
@@ -398,6 +467,10 @@
   
   <section class="faq-section">
     <h2>Dúvidas Frequentes</h2>
+    <div class="faq-container">
+      <div class="faq-image">
+        <img src="img/dispositivos.png" alt="Imagem FAQ">
+      </div>
     <div class="faq">
       <div class="faq-item">
         <div class="faq-question">Como funciona o sistema?</div>
@@ -408,21 +481,20 @@
         <div class="faq-answer">Sim! Oferecemos um período gratuito para que você conheça todas as funcionalidades antes de decidir.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-question">Tem suporte incluso?</div>
-        <div class="faq-answer">Sim, nosso time está disponível todos os dias da semana para te ajudar com qualquer dúvida.</div>
-      </div>
-      <div class="faq-item">
         <div class="faq-question">Como funciona o teste gratuito?</div>
         <div class="faq-answer">Para que você se sinta mais seguro, nós te damos acesso a nossa area de mebros para que você use gratuitamente alguns tipos de consultas disponíveis 3 vezes para teste. </div>
       </div>
     </div>
+  </div> <!-- FECHANDO faq-container -->
   </section>
 
   <section class="cta-section">
-    <h2>Teste Gratuitamente</h2>
+    <div class="cta-content">
+      <img src="img/new_max_buscas.png" alt="Imagem Teste" class="cta-image">
+      <h2>Teste Gratuitamente</h2>
       <p>Resultados rápidos com dados atualizados em tempo real. <br> Segurança garantida e suporte especializado sempre à disposição.</p>
-      <p></p>
-    <a href="#" class="cta-button">Quero Testar Agora</a>
+      <a href="#" class="cta-button">Quero Testar Agora</a>
+    </div>
   </section>
 
   <footer>
