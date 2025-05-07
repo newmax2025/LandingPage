@@ -49,10 +49,17 @@ async function handleRegistration(event) {
 
   const username = usernameInput.value.trim();
   const password = passwordInput.value.trim();
+	const invalidPattern = /<\s*script.*?>.*?<\s*\/\s*script\s*>/gi;
 
   // Limpa mensagens anteriores e remove classes
   registrationMessage.textContent = "";
   registrationMessage.className = "message-area";
+
+	if (invalidPattern.test(username) || invalidPattern.test(password)) {
+		messageArea.textContent = 'Entradas inválidas detectadas.';
+		messageArea.style.color = 'red';
+		return;
+}
 
   // Validação básica no cliente
   if (!username || !password) {

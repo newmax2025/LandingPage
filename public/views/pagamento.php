@@ -1,4 +1,8 @@
 <?php
+header("Content-Security-Policy: default-src 'self'");
+header("X-Content-Type-Options: nosniff");
+header("X-XSS-Protection: 1; mode=block");
+
 session_start();
 if (isset($_GET['v'])) {
     $_SESSION['vendedor_id'] = $_GET['v'];
@@ -34,11 +38,11 @@ $planos = [
     <form id="registrationForm">
         <div class="form-group">
             <label for="username">Usuário:</label>
-            <input type="text" id="username" placeholder="Digite seu nome de usuário" required>
+            <input type="text" id="username" pattern="^[a-zA-Z0-9_]{3,20}$" placeholder="Digite seu nome de usuário" required>
         </div>
         <div class="form-group">
             <label for="password">Senha:</label>
-            <input type="password" id="password" placeholder="Digite sua senha" required>
+            <input type="password" id="password" pattern="^[a-zA-Z0-9_]{3,20}$" placeholder="Digite sua senha" required>
         </div>
         <button type="submit" id="registerButton">Cadastrar</button>
         <div id="registrationMessage" class="message-area"></div>
