@@ -2,7 +2,7 @@
 require 'config.php'; // Garante que a conexão com o banco de dados está disponível
 
 // Buscar a chave do Cloudflare na tabela 'config'
-$query = "SELECT valor FROM config WHERE chave = 'token_cloudflarestore' LIMIT 1";
+$query = "SELECT valor FROM config WHERE chave = 'token_cloudflaresite' LIMIT 1";
 $stmt = $conexao->prepare($query);
 $stmt->execute();
 $result = $stmt->get_result();
