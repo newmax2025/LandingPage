@@ -20,7 +20,7 @@ if (isset($_GET['v'])) {
     <h1>Verificando seu acesso...</h1>
     <p>Por favor, complete a verificação abaixo para continuar.</p>
 
-    <div id="turnstileWidget" class="cf-turnstile" data-sitekey="0x4AAAAAABCwld1XrT-gkd_l" data-callback="onCaptchaSuccess"
+    <div id="turnstileWidget" class="cf-turnstile" data-sitekey="0x4AAAAAABCwDHTvDO5vK3tVm39GTFVolpg" data-callback="onCaptchaSuccess"
         data-error-callback="onCaptchaError">
     </div>
 
