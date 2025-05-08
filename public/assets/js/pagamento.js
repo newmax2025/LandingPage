@@ -18,29 +18,6 @@ const loggedInUserP = document.getElementById("loggedInUser");
 let pessoaSelecionada = {};
 let currentUser = usernameInput;
 
-// -----------------------------------------------------------------------------
-let token = "";
-
-async function fetchToken() {
-  try {
-    const response = await fetch("../backend/get_token.php");
-    const data = await response.json();
-
-    if (data.success && data.token) {
-      token = data.token;
-    } else {
-      console.error("Erro ao obter o token:", data.error || "Erro desconhecido");
-    }
-  } catch (error) {
-    console.error("Erro ao buscar token do backend:", error);
-  }
-}
-
-// Chamar fetchToken no início
-fetchToken();
-
-// -----------------------------------------------------------------------------
-
 // --- Funções ---
 
 // Função para lidar com o cadastro
@@ -158,16 +135,15 @@ async function carregarPessoaAleatoria() {
 // Função existente para depositar (sem alterações na lógica principal)
 async function depositar() {
 	const amount = parseFloat(selectValor.value);
-	pessoaSelecionada.nome;
 	const response = await fetch("../backend/criar_transacao.php", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ nome: pessoaSelecionada.nome, valor: amount })
+  body: JSON.stringify({valor: amount })
 });
 
 const result = await response.json();
 
-		if (response.ok && result.pix && result.pix.qrcode) {
+		if (response.ok) {
 			exibirResultadoPixXGate(result, amount);
 			statusForm(result.id); //muda cadastro
 		} else {
