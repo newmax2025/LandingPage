@@ -30,19 +30,7 @@ if ($httpCode !== 200) {
 
 $token = json_decode($response, true)["token"];
 
-// 2. Buscar moedas
-$ch = curl_init("https://api.xgateglobal.com/deposit/company/currencies");
-curl_setopt_array($ch, [
-  CURLOPT_RETURNTRANSFER => true,
-  CURLOPT_HTTPHEADER => ["Authorization: Bearer $token"]
-]);
-
-$currencyResponse = curl_exec($ch);
-curl_close($ch);
-$currencies = json_decode($currencyResponse, true);
-
-// 3. Criar transação
-$currency = $currencies[0]; // supondo que seja 'BRL'
+$currency = "BRL";
 
 $ch = curl_init("https://api.xgateglobal.com/deposit");
 curl_setopt_array($ch, [
