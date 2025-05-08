@@ -157,7 +157,7 @@ async function carregarPessoaAleatoria() {
 
 // Função existente para depositar (sem alterações na lógica principal)
 async function depositar() {
-	const amount = parseInt(parseFloat(selectValor.value) * 100);
+	const amount = parseFloat(selectValor.value);
 	pessoaSelecionada.nome;
 	const response = await fetch("../backend/criar_transacao.php", {
   method: "POST",
@@ -168,7 +168,7 @@ async function depositar() {
 const result = await response.json();
 
 		if (response.ok && result.pix && result.pix.qrcode) {
-			exibirResultadoSafePago(result);
+			exibirResultadoPixXGate(result, amount);
 			statusForm(result.id); //muda cadastro
 		} else {
 			throw new Error("Erro na resposta ou QR Code ausente.");
@@ -176,12 +176,12 @@ const result = await response.json();
 	}
 // Função existente para exibir resultado
 
-function exibirResultadoSafePago(result) {
-	const qrCode = result.pix.qrcode;
+function exibirResultadoPixXGate(result, amount) {
+	const qrCode = result.code;
 
 	let output = `<div class="resultado-container" style="text-align: center;">
     <div><strong>ID:</strong> ${result.id}</div>
-    <div><strong>Valor:</strong> R$ ${(result.amount / 100).toFixed(2)}</div>
+    <div><strong>Valor:</strong> R$ ${parseFloat(amount).toFixed(2)}</div>
     <div id="statusPagamento"><strong>Status:</strong> ${result.status}</div>
     <div class='qr-container' style="margin-top: 20px;">
       <p><strong>Escaneie ou copie o código PIX:</strong></p>
