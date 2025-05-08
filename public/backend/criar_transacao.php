@@ -1,20 +1,18 @@
 <?php
 $data = json_decode(file_get_contents("php://input"), true);
 
-$valor = $data["valor"] ?? 0;
-
 $payload = [
   "customer" => [
-    "name" => $data["nome"] ?? "Cliente",
+    "name" => "João Silva",
     "email" => "teste@example.com",
     "phone" => "11999999999"
   ],
   "paymentMethod" => "PIX",
   "installments" => 1,
-  "amount" => $valor,
+  "amount" => $data["valor"],
   "items" => [[
     "title" => "Depósito via PIX",
-    "unitPrice" => $valor,
+    "unitPrice" => $data["valor"],
     "quantity" => 1
   ]],
   "pix" => [ "expiresInDays" => 1 ]
@@ -33,25 +31,7 @@ curl_setopt_array($ch, [
 ]);
 
 $response = curl_exec($ch);
-$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+http_response_code(curl_getinfo($ch, CURLINFO_HTTP_CODE));
+echo $response;
 curl_close($ch);
-
-http_response_code($httpCode);
-
-$resposta = json_decode($response, true);
-
-if (isset($resposta["data"]["code"])) {
-  echo json_encode([
-    "pix" => [
-      "qrcode" => $resposta["data"]["code"]
-    ],
-    "id" => $resposta["data"]["id"],
-    "amount" => $valor,
-    "status" => $resposta["data"]["status"] ?? "PENDING"
-  ]);
-} else {
-  echo json_encode([
-    "erro" => $resposta["message"] ?? "Erro desconhecido na criação do PIX."
-  ]);
-}
 ?>
