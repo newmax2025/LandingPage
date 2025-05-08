@@ -67,13 +67,13 @@ $resposta = json_decode($response, true);
 
 if ($httpCode === 200 && isset($resposta["data"]["code"])) {
   echo json_encode([
-    "pix" => [
-      "qrcode" => $resposta["data"]["code"]
-    ],
-    "id" => $resposta["data"]["id"],
-    "amount" => $amount,
-    "status" => $resposta["data"]["status"] ?? "PENDING"
-  ]);
+  "code"   => $resposta["data"]["code"],       //  ←  NOVO
+  "pix"    => ["qrcode" => $resposta["data"]["code"]],
+  "id"     => $resposta["data"]["id"],
+  "amount" => $amount,
+  "status" => $resposta["data"]["status"] ?? "PENDING"
+]);
+
 } else {
   http_response_code($httpCode);
   echo json_encode([
