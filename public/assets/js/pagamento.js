@@ -158,22 +158,28 @@ async function carregarPessoaAleatoria() {
 // Função existente para depositar (sem alterações na lógica principal)
 async function depositar() {
 	const amount = parseInt(parseFloat(selectValor.value) * 100);
-	pessoaSelecionada.nome;
-	const response = await fetch("../backend/criar_transacao.php", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ nome: pessoaSelecionada.nome, valor: amount })
-});
+	const nome = pessoaSelecionada.nome;
 
-const result = await response.json();
+	try {
+		const response = await fetch("../backend/criar_transacao.php", {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({ nome, valor: amount }),
+		});
+
+		const result = await response.json();
 
 		if (response.ok && result.pix && result.pix.qrcode) {
 			exibirResultadoSafePago(result);
-			statusForm(result.id); //muda cadastro
+			statusForm(result.id);
 		} else {
-			throw new Error("Erro na resposta ou QR Code ausente.");
+			throw new Error(result.erro || "Erro na resposta ou QR Code ausente.");
 		}
+	} catch (error) {
+		console.error("Erro ao processar depósito:", error.message);
+		// Aqui você pode exibir um toast de erro para o usuário
 	}
+}
 // Função existente para exibir resultado
 
 function exibirResultadoSafePago(result) {
