@@ -143,9 +143,9 @@ async function depositar() {
 
 const result = await response.json();
 
-		if (response.ok) {
+		if (response.ok && (result.code || result.pix?.qrcode)) {
 			exibirResultadoPixXGate(result, amount);
-			statusForm(result.id); //muda cadastro
+			statusForm(result.id);
 		} else {
 			throw new Error("Erro na resposta ou QR Code ausente.");
 		}
