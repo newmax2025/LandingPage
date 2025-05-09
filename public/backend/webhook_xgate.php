@@ -4,16 +4,17 @@ require_once "config.php"; // conexão com o BD
 // Recebe o JSON bruto do webhook
 $json = file_get_contents('php://input');
 
-// Salva o conteúdo recebido em um arquivo para análise
+// Salva o conteúdo recebido para análise (debug)
 file_put_contents('log_webhook.txt', date("Y-m-d H:i:s") . "\n" . $json . "\n\n", FILE_APPEND);
 
-// Tenta decodificar o JSON
+// Decodifica o JSON
 $data = json_decode($json, true);
 
-// Aqui você pode continuar com a lógica antiga, se desejar
-if (isset($data['data']['status']) && $data['data']['status'] === 'paid') {
-    $codigoTransacao = $data['data']['id'];
+// Verifica se o status é 'PAID'
+if (isset($data['status']) && strtoupper($data['status']) === 'PAID') {
+    $codigoTransacao = $data['id'];
 
+    // Busca o cliente correspondente usando o código da transação
     $sql = "SELECT cliente_id FROM transacoes WHERE codigo_transacao = ?";
     $stmt = $conexao->prepare($sql);
     $stmt->bind_param("s", $codigoTransacao);
@@ -23,6 +24,7 @@ if (isset($data['data']['status']) && $data['data']['status'] === 'paid') {
     if ($row = $result->fetch_assoc()) {
         $clienteId = $row['cliente_id'];
 
+        // Ativa a conta do cliente
         $sqlUpdate = "UPDATE clientes SET status = 'ativo' WHERE id = ?";
         $stmtUpdate = $conexao->prepare($sqlUpdate);
         $stmtUpdate->bind_param("i", $clienteId);
@@ -30,6 +32,6 @@ if (isset($data['data']['status']) && $data['data']['status'] === 'paid') {
     }
 }
 
-// Sempre responda com status 200
+// Responde com status 200 para confirmar recebimento
 http_response_code(200);
 echo json_encode(['status' => 'ok']);
