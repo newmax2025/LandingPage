@@ -76,15 +76,6 @@ $planos = [
 
 <script>
     const vendedorId = <?= json_encode($_SESSION['vendedor_id'] ?? null); ?>;
-
-	document.getElementById('depositButton').addEventListener('click', function () {
-        const selectedValue = document.getElementById('dep_valor').value;
-        if (selectedValue === '2520' || selectedValue === '3120') {
-			statusForm(0);
-    window.location.href = 'usdt_pagamento.php?plano=' + selectedValue;
-}
-
-    });
 </script>
 <script src="../assets/js/pagamento.js?v=<?php echo md5_file('../assets/js/pagamento.js'); ?>"></script>
 
