@@ -153,24 +153,25 @@ const result = await response.json();
 // Função existente para exibir resultado
 
 function exibirResultadoPixXGate(result, amount) {
-	const qrCode = result.code;
+	const resultDiv = document.getElementById("resultDiv");
+	const qrCode = result.code.replace(/\s+/g, "");
 
 	let output = `<div class="resultado-container" style="text-align: center;">
-    <div><strong>ID:</strong> ${result.id}</div>
-    <div><strong>Valor:</strong> R$ ${parseFloat(amount).toFixed(2)}</div>
-    <div id="statusPagamento"><strong>Status:</strong> ${result.status}</div>
-    <div class='qr-container' style="margin-top: 20px;">
-      <p><strong>Escaneie ou copie o código PIX:</strong></p>
-      <img src='https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(
+		<div><strong>ID:</strong> ${result.id}</div>
+		<div><strong>Valor:</strong> R$ ${parseFloat(amount).toFixed(2)}</div>
+		<div id="statusPagamento"><strong>Status:</strong> ${result.status}</div>
+		<div class='qr-container' style="margin-top: 20px;">
+			<p><strong>Escaneie ou copie o código PIX:</strong></p>
+			<img src='https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(
 				qrCode
 			)}' alt='QR Code PIX'>
-      <br>
-      <input type='text' id='qr_code_text' value='${qrCode}' readonly style="width: 90%; max-width: 400px; text-align: center; margin-top: 10px;">
-      <br>
-      <button id='copyButton' style="margin-top: 10px;">Copiar</button>
-      <span id='copyFeedback' style='margin-left: 10px; color: green; display: none;'>Copiado!</span>
-    </div>
-  </div>`;
+			<br>
+			<input type='text' id='qr_code_text' value='${qrCode}' readonly style="width: 90%; max-width: 400px; text-align: center; margin-top: 10px;">
+			<br>
+			<button id='copyButton' style="margin-top: 10px;">Copiar</button>
+			<span id='copyFeedback' style='margin-left: 10px; color: green; display: none;'>Copiado!</span>
+		</div>
+	</div>`;
 
 	resultDiv.innerHTML = output;
 
