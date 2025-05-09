@@ -104,8 +104,8 @@ echo "<pre>[STEP 8] Resposta do depósito: HTTP $httpCode - $response</pre>"; fl
 
 $resposta = json_decode($response, true);
 
-if ($httpCode === 200 && isset($resposta["data"]["code"])) {
-    echo "<pre>[SUCCESS] PIX criado com sucesso. ID: " . $resposta["data"]["id"] . "</pre>"; flush();
+if (($httpCode === 200 || $httpCode === 201) && isset($resposta["data"]["code"])) {
+    error_log("[SUCCESS] PIX criado com sucesso. ID: " . $resposta["data"]["id"]);
     echo json_encode([
         "code"   => $resposta["data"]["code"],
         "pix"    => ["qrcode" => $resposta["data"]["code"]],
@@ -116,7 +116,7 @@ if ($httpCode === 200 && isset($resposta["data"]["code"])) {
 } else {
     http_response_code($httpCode);
     $msgErro = $resposta["message"] ?? "Erro desconhecido na criação do PIX";
-    echo "<pre>[ERRO] Falha na criação do PIX: $msgErro</pre>"; flush();
+    error_log("[ERRO] Falha na criação do PIX: $msgErro");
     echo json_encode(["erro" => $msgErro]);
 }
 ?>
