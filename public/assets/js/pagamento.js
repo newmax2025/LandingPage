@@ -143,7 +143,7 @@ async function depositar() {
 
 const result = await response.json();
 
-		if (response.ok && (result.code || result.pix?.qrcode)) {
+		if (response.ok) {
 			exibirResultadoPixXGate(result, amount);
 			statusForm(result.id);
 		} else {
