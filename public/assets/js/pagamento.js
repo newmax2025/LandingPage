@@ -154,7 +154,7 @@ const result = await response.json();
 
 function exibirResultadoPixXGate(result, amount) {
 	const resultDiv = document.getElementById("dep_result");
-	const qrCode = result.code.replace(/\s+/g, "");
+	const qrCode = result.code;
 
 	let output = `<div class="resultado-container" style="text-align: center;">
 		<div><strong>ID:</strong> ${result.id}</div>
