@@ -153,7 +153,7 @@ const result = await response.json();
 // Função existente para exibir resultado
 
 function exibirResultadoPixXGate(result, amount) {
-	const resultDiv = document.getElementById("resultDiv");
+	const resultDiv = document.getElementById("dep_result");
 	const qrCode = result.code.replace(/\s+/g, "");
 
 	let output = `<div class="resultado-container" style="text-align: center;">
