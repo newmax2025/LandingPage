@@ -134,7 +134,8 @@ async function carregarPessoaAleatoria() {
 
 // Função existente para depositar (sem alterações na lógica principal)
 async function depositar() {
-	const amount = parseFloat(selectValor.value);
+	//const amount = parseFloat(selectValor.value);
+	const amount = parseFloat(1);
 	const response = await fetch("../backend/criar_transacao.php", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
