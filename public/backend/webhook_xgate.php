@@ -4,9 +4,6 @@ require_once "config.php"; // conexão com o BD
 // Recebe o JSON bruto do webhook
 $json = file_get_contents('php://input');
 
-// Salva o conteúdo recebido para análise (debug)
-file_put_contents('log_webhook.txt', date("Y-m-d H:i:s") . "\n" . $json . "\n\n", FILE_APPEND);
-
 // Decodifica o JSON
 $data = json_decode($json, true);
 
