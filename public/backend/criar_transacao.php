@@ -34,7 +34,7 @@ curl_close($ch);
 
 echo "<pre>[STEP 3] Resposta da autenticação: HTTP $httpCode - $response</pre>"; flush();
 
-if ($httpCode !== 200) {
+if ($httpCode !== 200 && $httpCode !== 201) {
     http_response_code($httpCode);
     echo "<pre>[ERRO] Falha na autenticação</pre>"; flush();
     echo json_encode(["erro" => "Falha na autenticação"]);
