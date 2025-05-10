@@ -93,10 +93,21 @@
         <div class="price">R$ 2.520</div>
         <div class="per-month">Premium Anual (30% off)</div>
         <a href="#" class="plan-button" data-plan="2520">Assinar</a>
+      </div>
+
+	     <div class="plan">
+        <img src="../assets/img/new_max_buscas.png" alt="Logo" class="plan-logo">
+        <h3>Planos Anuais com Desconto</h3>
+        <ul>
+          Módulos Disponíveis
+          ✅ CRLV |✅ Serasa | ✅ SCPC | ✅ CNH com Foto
+          ✅ FGTS | ✅ Aposentados | ✅ Radar | ✅ Placa Plus
+          ✅ Condutor | ✅ Veicular | ✅ DETRAN Pro
+          <div class="per-month">e Muitos Outros Módulos!</div>
+        </ul>
         <div class="price">R$ 3.120</div>
         <div class="per-month">Diamante Anual (40% off)</div>
         <a href="#" class="plan-button" data-plan="3120">Assinar</a>
-      </div>
   </section>
 
   <section class="faq-section">
