@@ -172,7 +172,7 @@
     const vendedorId = urlParams.get("v");
 
     if (vendedorId) {
-      fetch(`get_whatsapp.php?v=${vendedorId}`)
+      fetch(`../backend/get_whatsapp.php?v=${vendedorId}`)
         .then(response => response.json())
         .then(data => {
           if (data.whatsapp) {
