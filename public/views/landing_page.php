@@ -108,6 +108,7 @@
         <div class="price">R$ 3.120</div>
         <div class="per-month">Diamante Anual (40% off)</div>
         <a href="#" class="plan-button" data-plan="3120">Assinar</a>
+				</div>
   </section>
 
   <section class="faq-section">
