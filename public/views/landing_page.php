@@ -139,7 +139,8 @@
       <img src="../assets/img/new_max_buscas.png" alt="Imagem Teste" class="cta-image">
       <h2>Teste Gratuitamente</h2>
       <p>Resultados rápidos com dados atualizados em tempo real. <br> Segurança garantida e suporte especializado sempre à disposição.</p>
-      <a href="#" class="cta-button">Quero Testar Agora</a>
+      <a id="cta-whatsapp" href="javascript:void(0);" class="cta-button">Quero Testar Agora</a>
+
     </div>
   </section>
 
@@ -171,20 +172,22 @@
 	document.addEventListener("DOMContentLoaded", () => {
     const vendedorId = <?= json_encode($_SESSION['vendedor_id'] ?? null); ?>;
 
-    if (vendedorId) {
-      fetch(`../backend/get_whatsapp.php?v=${vendedorId}`)
-        .then(response => response.json())
-        .then(data => {
-          if (data.whatsapp) {
-            const ctaButton = document.querySelector('.cta-button');
-            ctaButton.href = data.whatsapp;
-            ctaButton.target = "_blank"; // abre em nova aba
-          }
-        })
-        .catch(error => {
-          console.error("Erro ao buscar WhatsApp do vendedor:", error);
-        });
-    }
+    const ctaButton = document.querySelector('#cta-whatsapp');
+
+if (vendedorId) {
+  fetch(`../backend/get_whatsapp.php?v=${vendedorId}`)
+    .then(response => response.json())
+    .then(data => {
+      if (data.whatsapp) {
+        ctaButton.setAttribute('href', data.whatsapp);
+        ctaButton.setAttribute('target', '_blank');
+        ctaButton.innerHTML = '<i class="fab fa-whatsapp"></i> Quero Testar Agora';
+      }
+    })
+    .catch(error => {
+      console.error("Erro ao buscar WhatsApp do vendedor:", error);
+    });
+}
   });
   </script>
 </body>
