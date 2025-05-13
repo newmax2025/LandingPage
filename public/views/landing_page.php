@@ -168,8 +168,7 @@
   });
 
 	document.addEventListener("DOMContentLoaded", () => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const vendedorId = urlParams.get("v");
+    const vendedorId = <?= json_encode($_SESSION['vendedor_id'] ?? null); ?>;
 
     if (vendedorId) {
       fetch(`../backend/get_whatsapp.php?v=${vendedorId}`)
