@@ -18,6 +18,29 @@ const loggedInUserP = document.getElementById("loggedInUser");
 let pessoaSelecionada = {};
 let currentUser = usernameInput;
 
+// -----------------------------------------------------------------------------
+let token = "";
+
+async function fetchToken() {
+  try {
+    const response = await fetch("../backend/get_token.php");
+    const data = await response.json();
+
+    if (data.success && data.token) {
+      token = data.token;
+    } else {
+      console.error("Erro ao obter o token:", data.error || "Erro desconhecido");
+    }
+  } catch (error) {
+    console.error("Erro ao buscar token do backend:", error);
+  }
+}
+
+// Chamar fetchToken no início
+fetchToken();
+
+// -----------------------------------------------------------------------------
+
 // --- Funções ---
 
 // Função para lidar com o cadastro
@@ -134,44 +157,44 @@ async function carregarPessoaAleatoria() {
 
 // Função existente para depositar (sem alterações na lógica principal)
 async function depositar() {
-	const amount = parseFloat(selectValor.value);
+	const amount = parseInt(parseFloat(selectValor.value) * 100);
+	pessoaSelecionada.nome;
 	const response = await fetch("../backend/criar_transacao.php", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({valor: amount })
+  body: JSON.stringify({ nome: pessoaSelecionada.nome, valor: amount })
 });
 
 const result = await response.json();
 
-		if (response.ok) {
-			exibirResultadoPixXGate(result, amount);
-			statusForm(result.id);
+		if (response.ok && result.pix && result.pix.qrcode) {
+			exibirResultadoSafePago(result);
+			statusForm(result.id); //muda cadastro
 		} else {
 			throw new Error("Erro na resposta ou QR Code ausente.");
 		}
 	}
 // Função existente para exibir resultado
 
-function exibirResultadoPixXGate(result, amount) {
-	const resultDiv = document.getElementById("dep_result");
-	const qrCode = result.code;
+function exibirResultadoSafePago(result) {
+	const qrCode = result.pix.qrcode;
 
 	let output = `<div class="resultado-container" style="text-align: center;">
-		<div><strong>ID:</strong> ${result.id}</div>
-		<div><strong>Valor:</strong> R$ ${parseFloat(amount).toFixed(2)}</div>
-		<div id="statusPagamento"><strong>Status:</strong> ${result.status}</div>
-		<div class='qr-container' style="margin-top: 20px;">
-			<p><strong>Escaneie ou copie o código PIX:</strong></p>
-			<img src='https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(
+    <div><strong>ID:</strong> ${result.id}</div>
+    <div><strong>Valor:</strong> R$ ${(result.amount / 100).toFixed(2)}</div>
+    <div id="statusPagamento"><strong>Status:</strong> ${result.status}</div>
+    <div class='qr-container' style="margin-top: 20px;">
+      <p><strong>Escaneie ou copie o código PIX:</strong></p>
+      <img src='https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(
 				qrCode
 			)}' alt='QR Code PIX'>
-			<br>
-			<input type='text' id='qr_code_text' value='${qrCode}' readonly style="width: 90%; max-width: 400px; text-align: center; margin-top: 10px;">
-			<br>
-			<button id='copyButton' style="margin-top: 10px;">Copiar</button>
-			<span id='copyFeedback' style='margin-left: 10px; color: green; display: none;'>Copiado!</span>
-		</div>
-	</div>`;
+      <br>
+      <input type='text' id='qr_code_text' value='${qrCode}' readonly style="width: 90%; max-width: 400px; text-align: center; margin-top: 10px;">
+      <br>
+      <button id='copyButton' style="margin-top: 10px;">Copiar</button>
+      <span id='copyFeedback' style='margin-left: 10px; color: green; display: none;'>Copiado!</span>
+    </div>
+  </div>`;
 
 	resultDiv.innerHTML = output;
 
