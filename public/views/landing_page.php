@@ -166,6 +166,26 @@
       window.location.href = url;
     });
   });
+
+	document.addEventListener("DOMContentLoaded", () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const vendedorId = urlParams.get("v");
+
+    if (vendedorId) {
+      fetch(`get_whatsapp.php?v=${vendedorId}`)
+        .then(response => response.json())
+        .then(data => {
+          if (data.whatsapp) {
+            const ctaButton = document.querySelector('.cta-button');
+            ctaButton.href = data.whatsapp;
+            ctaButton.target = "_blank"; // abre em nova aba
+          }
+        })
+        .catch(error => {
+          console.error("Erro ao buscar WhatsApp do vendedor:", error);
+        });
+    }
+  });
   </script>
 </body>
 </html>
