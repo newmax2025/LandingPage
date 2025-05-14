@@ -148,7 +148,7 @@ session_start();
   </section>
 
   <footer>
-    <p>&copy; 2025 New Max Consultas. Todos os direitos reservados.</p>
+    <p>&copy; 2025 New Max Buscas. Todos os direitos reservados.</p>
   </footer>
 
   <script>
