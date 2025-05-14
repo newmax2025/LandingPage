@@ -30,7 +30,7 @@ session_start();
 
   <section class="text-section">
     <h2>O Painel Mais Completo para Todas as Suas Buscas</h2>
-    <p>Só aqui na NEW MAX CONSULTAS você tem Segurança,</p>
+    <p>Só aqui na NEW MAX BUSCAS você tem Segurança,</p>
     <p>Tranquilidade e Confidencialidade.</p>
   </section>
 
